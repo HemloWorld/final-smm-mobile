@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class HomeBNB extends StatefulWidget {
   @override
@@ -7,39 +8,28 @@ class HomeBNB extends StatefulWidget {
 
 class _HomeBNBState extends State<HomeBNB> {
 
-  int _currentIndex = 0;
+  // int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-        backgroundColor: Colors.red,
-        currentIndex: _currentIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: Colors.white),
-            title: Text('Home'),
-            backgroundColor: Colors.red
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.camera_enhance,
-              color: Colors.white,),
-            title: Text('Absen'),
-            backgroundColor: Colors.red
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-              color: Colors.white,),
-            title: Text('Profile'),
-            backgroundColor: Colors.red
-          )
-        ],
+    return CurvedNavigationBar(
+      color: Colors.red,
+      backgroundColor: Colors.white,
+      buttonBackgroundColor: Colors.red[40],
+      height: 50,
+      animationCurve: Curves.decelerate,
+      animationDuration: Duration(
+        milliseconds: 500
+      ),
+        // currentIndex: _currentIndex,
+      items: <Widget> [
+        Icon(Icons.home, size: 20, color: Colors.white),
+        Icon(Icons.camera_enhance, size: 20, color: Colors.white),
+        Icon(Icons.person, size: 20, color: Colors.white)
+      ],
         onTap: (index) {
           setState(() {
-            _currentIndex = index;
+            print(index);
           });
         } ,
       );
