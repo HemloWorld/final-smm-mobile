@@ -185,22 +185,14 @@ class _LoginPageState extends State<LoginPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          RaisedButton(
-            onPressed:() {
+          SignInButton(
+            Buttons.Google,
+            onPressed: () {
               signInWithGoogle().then((log) {
                 Navigator.of(context).pushReplacementNamed(Bar.tag);
               });
             },
-          )
-
-//          SignInButton(
-//            Buttons.Google,
-//            onPressed: () {
-//              signInWithGoogle().then((log) {
-//                Navigator.of(context).pushReplacementNamed(Bar.tag);
-//              });
-//            },
-//          ),
+          ),
         ],
       ),
     );
