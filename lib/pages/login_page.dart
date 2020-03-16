@@ -1,9 +1,10 @@
-import 'package:final_project/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+//pub dev
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-
+//auth
 import '../auth.dart';
+import 'package:final_project/app_bar.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -145,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 1,
-        onPressed: () {},
+        onPressed: () {Navigator.of(context).pushReplacementNamed(Bar.tag);},
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),

@@ -123,44 +123,40 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
             ),
           ),
         ),
-        Positioned(
-          top: expandedHeight / 8 - shrinkOffset,
-          left: MediaQuery.of(context).size.width/3.1,
-          child: Opacity(
-            opacity: (1 - shrinkOffset / expandedHeight),
-            child: Column(
-              children: <Widget>[
-                Container(
-                    width: 130,
-                    height: 130,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(imageURL),
-                            fit: BoxFit.cover),
-                        borderRadius: BorderRadius.all(Radius.circular(75.0)),
-                        boxShadow: [
-                          BoxShadow(blurRadius: 7.0, color: Colors.black)
-                        ])),
-                SizedBox(height: 20.0),
-                Text(
-                  'Zayn Malik',
-                  style: TextStyle(
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                SizedBox(height: 15.0),
-                Text(
-                  'Project Manager',
-                  style: TextStyle(
-                      fontSize: 17.0,
-                      fontStyle: FontStyle.italic,
-                      color: Colors.white),
-                ),
-              ],
-            ),
-          ),
-        ),
+       Center(
+         child: Column(
+           children: <Widget>[
+             SizedBox(height: 30,),
+             Container(
+                 width: 130,
+                 height: 130,
+                 decoration: BoxDecoration(
+                     image: DecorationImage(
+                         image: NetworkImage(imageURL),
+                         fit: BoxFit.cover),
+                     borderRadius: BorderRadius.all(Radius.circular(75.0)),
+                     boxShadow: [
+                       BoxShadow(blurRadius: 5.0, color: Colors.grey)
+                     ])),
+             SizedBox(height: 20.0),
+             Text(
+               name,
+               style: TextStyle(
+                   fontSize: 30.0,
+                   fontWeight: FontWeight.bold,
+                   color: Colors.white),
+             ),
+             SizedBox(height: 15.0),
+             Text(
+               'Project Manager',
+               style: TextStyle(
+                   fontSize: 17.0,
+                   fontStyle: FontStyle.italic,
+                   color: Colors.white),
+             ),
+           ],
+         ),
+       )
       ],
     );
   }

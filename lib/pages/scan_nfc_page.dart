@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+//pub dev
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
+//utils
+import 'package:final_project/utils/pop_dialog.dart';
+//widget
+import 'package:final_project/widgets/main_button.dart';
 
 class ScanNFCPage extends StatefulWidget {
   static String tag = 'scan-nfc-tag';
@@ -8,6 +14,44 @@ class ScanNFCPage extends StatefulWidget {
 }
 
 class _ScanNFCPageState extends State<ScanNFCPage> {
+  String scannerResult;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  void scan() async {
+    String result = await scanner.scan();
+    setState(() {
+      scannerResult = result;
+      PopDialog.showBottomDialog(
+        context,
+        Center(
+            child: Column(
+              children: <Widget>[
+                Text(scannerResult),
+                MainButton(
+                  text: 'Submit',
+                  onClickEvent: () {
+                    submit();
+                  },
+                ),
+              ],
+            )),
+
+      );
+    });}
+
+  void submit() {
+    setState(() {
+      scannerResult = '';
+    });
+  }
+
+
+
   @override
   Widget _scanOrNFC(IconData icon, String label) {
     return Container(
@@ -39,7 +83,7 @@ class _ScanNFCPageState extends State<ScanNFCPage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               FlatButton(
-                onPressed: (){},
+                onPressed: () => scan(),
                 child: Column(
                   children: <Widget>[
                     _scanOrNFC(Icons.settings_overscan,'SCAN QR')

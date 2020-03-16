@@ -5,6 +5,7 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:final_project/pages/home_page.dart';
 import 'package:final_project/pages/profile_page.dart';
 import 'package:final_project/pages/scan_nfc_page.dart';
+import 'package:final_project/pages/list_page.dart';
 
 class Bar extends StatefulWidget {
   static String tag = 'app';
@@ -26,7 +27,7 @@ class _BarState extends State<Bar> {
     return [
       HomePage(),
       ScanNFCPage(),
-      HomePage(),
+      ListPage(),
       ProfilePage(),
     ];
   }
