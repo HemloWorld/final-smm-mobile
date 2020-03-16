@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _rememberMe = false;
 
 
-  Widget _buildEmailTF() {
+  Widget _fieldEmail() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildPasswordTF() {
+  Widget _fieldPassword() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -105,42 +105,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildForgotPasswordBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: FlatButton(
-        onPressed: () => print('Forgot Password Button Pressed'),
-        padding: EdgeInsets.only(right: 0.0),
-        child: Text('Forgot Password?', style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold)),
-      ),
-    );
-  }
-
-  Widget _buildRememberMeCheckbox() {
-    return Container(
-      height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.black54),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: Color.fromRGBO(208,52,47,1),
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value;
-                });
-              },
-            ),
-          ),
-          Text('Remember me', style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold),),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildLoginBtn() {
+  Widget _loginButton() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
@@ -166,117 +131,48 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildSignInWithText() {
-    return Column(
-      children: <Widget>[
-        Text(
-          '- OR -',
-          style: TextStyle(
-            color: Colors.black54,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSocialBtnRow() {
-    return Padding(
+  Widget _signWithGoogle() {
+    return Container(
       padding: EdgeInsets.symmetric(vertical: 10.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          SignInButton(
-            Buttons.Google,
-            onPressed: () {
-              signInWithGoogle().then((log) {
-                Navigator.of(context).pushReplacementNamed(Bar.tag);
-              });
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSignupBtn() {
-    return GestureDetector(
-      onTap: () => print('Sign Up Button Pressed'),
-      child: RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: 'Don\'t have an Account? ',
-              style: TextStyle(
-                color: Colors.black54,
-                fontSize: 14.0,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            TextSpan(
-              text: 'Sign Up',
-              style: TextStyle(
-                color: Colors.black54,
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
+      child: SignInButton(
+        Buttons.Google,
+        onPressed: () {
+          signInWithGoogle().then((log) {
+            Navigator.of(context).pushReplacementNamed(Bar.tag);
+          });
+        },
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 40),
+        decoration: BoxDecoration(color: Colors.white),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 20.0,),
+            Image.asset('assets/logo.png'),
+            SizedBox(height: 80.0),
+            _fieldEmail(),
+            SizedBox(height: 20.0,),
+            _fieldPassword(),
+            SizedBox(height: 10.0,),
+            _loginButton(),
+            Text(
+              '- OR -',
+              style: TextStyle(
+                color: Colors.black54,
+                fontWeight: FontWeight.w400,
               ),
-              Container(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 40.0,
-                    vertical: 100.0,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset('assets/logo.png'),
-                      SizedBox(height: 70.0),
-                      _buildEmailTF(),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      _buildPasswordTF(),
-                      _buildForgotPasswordBtn(),
-                      _buildRememberMeCheckbox(),
-                      _buildLoginBtn(),
-                      _buildSignInWithText(),
-                      _buildSocialBtnRow(),
-                      _buildSignupBtn(),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
+            ),
+            _signWithGoogle(),
+          ],
         ),
-      ),
+      )
     );
   }
 }

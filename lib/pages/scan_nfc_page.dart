@@ -86,7 +86,7 @@ class _ScanNFCPageState extends State<ScanNFCPage> {
                 onPressed: () => scan(),
                 child: Column(
                   children: <Widget>[
-                    _scanOrNFC(Icons.settings_overscan,'SCAN QR')
+                    _scanOrNFC(FontAwesomeIcons.barcode,'SCAN QR')
                   ],
                 ),
               ),

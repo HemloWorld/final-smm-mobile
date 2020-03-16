@@ -42,14 +42,14 @@ class _BarState extends State<Bar> {
         isTranslucent: false,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.settings_overscan),
-        title: ("Barcode"),
+        icon: Icon(Icons.touch_app),
+        title: ("Presence"),
         activeColor: Color.fromRGBO(208, 52, 47, 1),
         inactiveColor: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.list),
-        title: ("List"),
+        icon: Icon(Icons.date_range),
+        title: ("Report"),
         activeColor: Color.fromRGBO(208, 52, 47, 1),
         inactiveColor: Colors.grey,
       ),

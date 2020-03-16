@@ -1,9 +1,17 @@
 import 'package:final_project/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:sqflite/sqflite.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   static String tag = 'home-page';
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool _checkTask = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +31,7 @@ class HomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(top: 20),
+                  padding: EdgeInsets.only(top: 40),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -31,7 +39,7 @@ class HomePage extends StatelessWidget {
                         'Todays Task',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.white70,
+                            color: Color(0xFFEBEEF1),
                             fontSize: 18
                         ),
                       ),
@@ -56,7 +64,7 @@ class HomePage extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 26,
-                              color: Colors.white70
+                              color: Color(0xFFEBEEF1)
                           ),
                         ),
                         SizedBox(
@@ -65,7 +73,7 @@ class HomePage extends StatelessWidget {
                         Text(
                           'You have 3 tasks today',
                           style: TextStyle(
-                              color: Colors.white70,
+                              color: Color(0xFFEBEEF1),
                               fontSize: 16
                           ),
                         )
@@ -80,10 +88,10 @@ class HomePage extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 32, bottom: 20),
           child: Text(
-            'Senin, 16 Maret 2019',
+            '${DateFormat('EEEE, d MMM yyyy').format(DateTime.now())}',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Colors.black45,
                 fontSize: 16
             ),
           ),
@@ -103,7 +111,7 @@ class HomePage extends StatelessWidget {
                       padding: EdgeInsets.all(20),
                       width: 200,
                       decoration: BoxDecoration(
-                          color: Colors.grey[300],
+                          color: Color(0xFFEBEEF1),
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(40))
                       ),
                       child: Column(
@@ -111,7 +119,16 @@ class HomePage extends StatelessWidget {
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Icon(Icons.assignment_turned_in, color: Colors.grey[800]),
+                              Checkbox(
+                                value: _checkTask,
+                                checkColor: Color.fromRGBO(208,52,47,1),
+                                activeColor: Color(0xFFEBEEF1),
+                                onChanged: (value) {
+                                  setState(() {
+                                    _checkTask = value;
+                                  });
+                                },
+                              ),
                               SizedBox(width: 16),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +145,7 @@ class HomePage extends StatelessWidget {
                                     '09 : 00 AM',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.grey[800],
+                                        color: Colors.black45,
                                         fontSize: 16
                                     ),
                                   ),
@@ -140,7 +157,7 @@ class HomePage extends StatelessWidget {
                           Text(
                             'Mengecek alat absen',
                             style: TextStyle(
-                                color: Colors.grey[800],
+                                color: Colors.black45,
                                 fontSize: 14
                             ),
                           ),
