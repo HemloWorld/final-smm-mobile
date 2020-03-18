@@ -46,6 +46,7 @@ class ListPage extends StatelessWidget {
               ),
               hintText: 'Search by name',
               hintStyle: TextStyle(color: Colors.black45, fontSize: 14),
+              
             ),
           ),
         ),

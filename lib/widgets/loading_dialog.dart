@@ -22,6 +22,5 @@ class LoadingDialog extends StatelessWidget {
             ]),
           )
         ]));
-    ;
   }
 }
