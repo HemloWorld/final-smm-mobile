@@ -86,8 +86,8 @@ class ListPage extends StatelessWidget {
               }
               return Column(
                 children: <Widget>[
-                  SizedBox(height: MediaQuery.of(context).size.height / 3,),
-                  CircularProgressIndicator(),
+                  // SizedBox(height: MediaQuery.of(context).size.height / 3,),
+                  Image.asset('assets/MagnumOpusTrans.png'),
                 ],
               );
             },
