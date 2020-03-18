@@ -69,7 +69,7 @@ class _BarState extends State<Bar> {
       items: _navBarsItems(),
       screens: _buildScreens(),
       showElevation: false,
-      isCurved: true,
+      isCurved: false,
       backgroundColor: const Color(0xFFEBEEF1),
       iconSize: 26.0,
       navBarStyle: NavBarStyle.style8,
