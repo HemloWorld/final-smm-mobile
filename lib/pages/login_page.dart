@@ -1,4 +1,5 @@
 import 'package:final_project/widgets/email_field.dart';
+import 'package:final_project/widgets/password_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 //pub dev
@@ -15,50 +16,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  Widget _fieldPassword() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text('Password', style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold),),
-        SizedBox(height: 5.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: Colors.white54,
-            borderRadius: BorderRadius.circular(10.0),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 6.0,
-                offset: Offset(0, 2),
-              ),
-            ],
-          ),
-          height: 40.0,
-          child: TextField(
-            controller: null,
-            obscureText: true,
-            style: TextStyle(
-              color: Colors.black45,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 6.0),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: Colors.black45,
-                size: 20,
-              ),
-              hintText: 'Enter your Password',
-              hintStyle: TextStyle(color: Colors.black45, fontSize: 14),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _loginButton() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
@@ -113,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 80.0),
             EmailField(),
             SizedBox(height: 20.0,),
-            _fieldPassword(),
+            PasswordField(),
             SizedBox(height: 10.0,),
             _loginButton(),
             Text(
