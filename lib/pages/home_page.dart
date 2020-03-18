@@ -1,7 +1,6 @@
 import 'package:final_project/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:sqflite/sqflite.dart';
 
 class HomePage extends StatefulWidget {
   static String tag = 'home-page';
@@ -60,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Hello, ${name}',
+                          'Hello, $name',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 26,

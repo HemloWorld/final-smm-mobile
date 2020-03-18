@@ -2,7 +2,6 @@ import 'package:final_project/widgets/login_widget/email_field.dart';
 import 'package:final_project/widgets/login_widget/login_button.dart';
 import 'package:final_project/widgets/login_widget/password_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 //pub dev
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 //auth
@@ -17,6 +16,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   Widget _signWithGoogle() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.0),

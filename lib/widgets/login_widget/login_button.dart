@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import '../../app_bar.dart';
 
-class LoginButton extends StatelessWidget {
+class LoginButton extends StatefulWidget {
+  @override
+  _LoginButtonState createState() => _LoginButtonState();
+}
+
+class _LoginButtonState extends State<LoginButton> {
+  String email = 'rahulbansal@gmail.com';
+  String password = 'Beraucoal';
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -9,7 +16,9 @@ class LoginButton extends StatelessWidget {
       width: double.infinity,
       child: RaisedButton(
         elevation: 1,
-        onPressed: () {Navigator.of(context).pushReplacementNamed(Bar.tag);},
+        onPressed: () {
+          Navigator.of(context).pushReplacementNamed(Bar.tag);
+          },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),

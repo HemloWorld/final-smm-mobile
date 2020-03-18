@@ -10,8 +10,7 @@ import 'package:final_project/pages/login_page.dart';
 class ProfilePage extends StatelessWidget {
   static String tag = 'profile-page';
 
-    @override
-  Widget _partOfProfile(IconData icon, String label) {
+    Widget _partOfProfile(IconData icon, String label) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[

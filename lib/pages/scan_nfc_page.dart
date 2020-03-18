@@ -16,12 +16,6 @@ class ScanNFCPage extends StatefulWidget {
 class _ScanNFCPageState extends State<ScanNFCPage> {
   String scannerResult;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
   void scan() async {
     String result = await scanner.scan();
     setState(() {
@@ -52,7 +46,6 @@ class _ScanNFCPageState extends State<ScanNFCPage> {
 
 
 
-  @override
   Widget _scanOrNFC(IconData icon, String label) {
     return Container(
       height: 120,

@@ -1,9 +1,5 @@
-import 'dart:async';
-import 'dart:convert';
 
-import 'package:final_project/models/user.dart';
 import 'package:final_project/services/dio_service.dart';
-import 'package:final_project/services/http_service.dart';
 import 'package:final_project/widgets/user_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
