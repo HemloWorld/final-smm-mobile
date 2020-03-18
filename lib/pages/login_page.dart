@@ -14,9 +14,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool _rememberMe = false;
-
-
   Widget _fieldEmail() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
