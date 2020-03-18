@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:final_project/models/user.dart';
 import 'package:http/http.dart' as http;
 
 const baseUrl = "https://jsonplaceholder.typicode.com";
