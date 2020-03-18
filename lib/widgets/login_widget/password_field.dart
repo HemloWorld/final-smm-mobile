@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class PasswordField extends StatelessWidget {
+
   final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Column(

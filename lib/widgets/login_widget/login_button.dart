@@ -7,8 +7,6 @@ class LoginButton extends StatefulWidget {
 }
 
 class _LoginButtonState extends State<LoginButton> {
-  String email = 'rahulbansal@gmail.com';
-  String password = 'Beraucoal';
   @override
   Widget build(BuildContext context) {
     return Container(

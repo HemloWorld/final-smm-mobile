@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class EmailField extends StatelessWidget {
+
   final emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Column(
