@@ -1,5 +1,6 @@
-import 'package:final_project/widgets/email_field.dart';
-import 'package:final_project/widgets/password_field.dart';
+import 'package:final_project/widgets/login_widget/email_field.dart';
+import 'package:final_project/widgets/login_widget/login_button.dart';
+import 'package:final_project/widgets/login_widget/password_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 //pub dev
@@ -16,32 +17,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  Widget _loginButton() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0),
-      width: double.infinity,
-      child: RaisedButton(
-        elevation: 1,
-        onPressed: () {Navigator.of(context).pushReplacementNamed(Bar.tag);},
-        padding: EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        color: Colors.red,
-        child: Text(
-          'LOGIN',
-          style: TextStyle(
-            color: Colors.white,
-            letterSpacing: 2,
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _signWithGoogle() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10.0),
@@ -72,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 20.0,),
             PasswordField(),
             SizedBox(height: 10.0,),
-            _loginButton(),
+            LoginButton(),
             Text(
               '- OR -',
               style: TextStyle(
