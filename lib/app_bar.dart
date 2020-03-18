@@ -72,7 +72,7 @@ class _BarState extends State<Bar> {
       isCurved: true,
       backgroundColor: const Color(0xFFEBEEF1),
       iconSize: 26.0,
-      navBarStyle: NavBarStyle.style5,
+      navBarStyle: NavBarStyle.style8,
     );
   }
 }
