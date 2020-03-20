@@ -1,12 +1,11 @@
 
 import 'package:final_project/services/dio_service.dart';
 import 'package:final_project/widgets/user_list.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ListPage extends StatelessWidget {
-  static String tag = 'list-tag';
+  static String tag = 'list-page';
 
     Widget _fieldSearchName() {
     return Column(
@@ -26,7 +25,7 @@ class ListPage extends StatelessWidget {
             ],
           ),
           height: 40.0,
-          width: 300,
+          width: 280,
           child: TextField(
             style: TextStyle(
               color: Colors.black45,
@@ -41,7 +40,7 @@ class ListPage extends StatelessWidget {
                 size: 20,
               ),
               hintText: 'Search by name',
-              hintStyle: TextStyle(color: Colors.black45, fontSize: 14),
+              hintStyle: TextStyle(color: Colors.black45, fontSize: 16),
               
             ),
           ),
@@ -61,35 +60,37 @@ class ListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
+    return Scaffold(
+      body: Container(
+        child: Column(
 //        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(height: 40,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _searchByScanOrNFC(Icons.settings_overscan),
-              _searchByScanOrNFC(Icons.nfc),
-              _fieldSearchName(),
-            ],
-          ),
-          FutureBuilder(
-            future: DioService().getHttp(),
-            builder: (context, response)
-            {
-              if(response.hasData) {
-                return UserList(response.data);
-              }
-              return Column(
-                children: <Widget>[
-                  // SizedBox(height: MediaQuery.of(context).size.height / 3,),
-                  Image.asset('assets/MagnumOpusTrans.png'),
-                ],
-              );
-            },
-          )
-        ],
+          children: <Widget>[
+            SizedBox(height: 40,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                _searchByScanOrNFC(Icons.settings_overscan),
+                _searchByScanOrNFC(Icons.nfc),
+                _fieldSearchName(),
+              ],
+            ),
+            FutureBuilder(
+              future: DioService().getHttp(),
+              builder: (context, response)
+              {
+                if(response.hasData) {
+                  return UserList(response.data);
+                }
+                return Column(
+                  children: <Widget>[
+                    SizedBox(height: MediaQuery.of(context).size.height / 3,),
+                    CircularProgressIndicator(),
+                  ],
+                );
+              },
+            )
+          ],
+        ),
       ),
     );
   }
