@@ -3,13 +3,19 @@ import 'package:final_project/pages/list_page.dart';
 import 'package:final_project/pages/login_page.dart';
 import 'package:final_project/pages/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:final_project/blocs/listpagebloc/lp_bloc.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  ListPageBloc();
+  runApp(MyApp());
+}
+
 final routes = <String, WidgetBuilder>{
-  Bar.tag:(context) => Bar(),
-  LoginPage.tag:(context) => LoginPage(),
-  ProfilePage.tag:(context) => ProfilePage(),
-  ListPage.tag:(context) => ListPage(),
+  '/': (_) => LoginPage(),
+  Bar.tag: (context) => Bar(),
+  LoginPage.tag: (context) => LoginPage(),
+  ProfilePage.tag: (context) => ProfilePage(),
+  ListPage.tag: (context) => ListPage(),
 };
 
 class MyApp extends StatelessWidget {
@@ -22,7 +28,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
         fontFamily: 'Nunito',
       ),
-      home: LoginPage(),
+      initialRoute: '/',
       routes: routes,
     );
   }

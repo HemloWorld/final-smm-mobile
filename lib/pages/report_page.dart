@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 
 class ReportPage extends StatefulWidget {
   static String tag = 'report-page';
+  final userData;
+  // TODO : Pake data ini buat nampilin profilnya biar ga hardcode
+  ReportPage(this.userData);
 
   @override
   _ReportPageState createState() => _ReportPageState();
@@ -15,46 +18,47 @@ class _ReportPageState extends State<ReportPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Material(
-        child: DefaultTabController(
-          length: 2,
-          child: NestedScrollView(
-            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled){
-              return <Widget>[
-                  SliverPersistentHeader(
-                    delegate: MySliverAppBar(expandedHeight: 280,),
-                    pinned: true,
-                  ),
-                  SliverList(
-                    delegate: SliverChildListDelegate([
-                      TabBar(
-                        labelColor: Color.fromRGBO(208,52,47,1),
-                        unselectedLabelColor: Colors.black45,
-                        tabs: [
-                          new Tab(icon: new Icon(Icons.person), text: "ABOUT ME"),
-                          new Tab(
-                              icon: new Icon(Icons.format_list_bulleted), text: "MONTHLY REPORT"),
-                        ],
-                      ),
-                    ]
+        child: Material(
+      child: DefaultTabController(
+        length: 2,
+        child: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              SliverPersistentHeader(
+                delegate: MySliverAppBar(
+                  expandedHeight: 280,
+                ),
+                pinned: true,
+              ),
+              SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    TabBar(
+                      labelColor: Color.fromRGBO(208, 52, 47, 1),
+                      unselectedLabelColor: Colors.black45,
+                      tabs: [
+                        new Tab(icon: new Icon(Icons.person), text: "ABOUT ME"),
+                        new Tab(
+                            icon: new Icon(Icons.format_list_bulleted),
+                            text: "MONTHLY REPORT"),
+                      ],
                     ),
-                  )
-              ];
-            },
-
-            body: TabBarView(
-              children: [
-                ProfileData(),
-                PresenceData(),
-              ],
-            ),
-            ),
+                  ],
+                ),
+              )
+            ];
+          },
+          body: TabBarView(
+            children: [
+              ProfileData(),
+              PresenceData(),
+            ],
           ),
-        )
-      );
+        ),
+      ),
+    ));
   }
 }
-
 
 class MySliverAppBar extends SliverPersistentHeaderDelegate {
   final double expandedHeight;
@@ -68,7 +72,9 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
       fit: StackFit.expand,
       overflow: Overflow.visible,
       children: [
-        Container(color:  Color.fromRGBO(208,52,47,1),),
+        Container(
+          color: Color.fromRGBO(208, 52, 47, 1),
+        ),
         Center(
           child: Opacity(
             opacity: shrinkOffset / expandedHeight,
@@ -83,25 +89,33 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
           ),
         ),
         Positioned(
-            top: expandedHeight / 40 -shrinkOffset,
-            child: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Colors.white,),
-            onPressed: (){Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ListPage(),
-              ),
-            );},),
+          top: expandedHeight / 40 - shrinkOffset,
+          child: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ListPage(),
+                ),
+              );
+            },
+          ),
         ),
         Positioned(
-            top: expandedHeight / 40 -shrinkOffset,
+            top: expandedHeight / 40 - shrinkOffset,
             child: Container(
               width: MediaQuery.of(context).size.width,
               child: Opacity(
                 opacity: (1 - shrinkOffset / expandedHeight),
                 child: Column(
                   children: <Widget>[
-                    SizedBox(height: 30,),
+                    SizedBox(
+                      height: 30,
+                    ),
                     Container(
                         width: 130,
                         height: 130,
@@ -109,7 +123,8 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                             image: DecorationImage(
                                 image: NetworkImage(imageURL),
                                 fit: BoxFit.cover),
-                            borderRadius: BorderRadius.all(Radius.circular(75.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(75.0)),
                             boxShadow: [
                               BoxShadow(blurRadius: 5.0, color: Colors.grey)
                             ])),
@@ -132,8 +147,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                   ],
                 ),
               ),
-            )
-        )
+            ))
       ],
     );
   }

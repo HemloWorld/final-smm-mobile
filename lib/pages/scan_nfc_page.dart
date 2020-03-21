@@ -16,13 +16,16 @@ class ScanNFCPage extends StatefulWidget {
 class _ScanNFCPageState extends State<ScanNFCPage> {
   String scannerResult;
 
+  // TODO : GANTI JADI PAKE SCAN SERVICE AJA
+  // TODO : BIKIN POST SERVICE DAN BUAT MEKANISME ABSEN PAKE QR
   void scan() async {
     String result = await scanner.scan();
-    setState(() {
-      scannerResult = result;
-      PopDialog.showBottomDialog(
-        context,
-        Center(
+    setState(
+      () {
+        scannerResult = result;
+        PopDialog.showBottomDialog(
+          context,
+          Center(
             child: Column(
               children: <Widget>[
                 Text(scannerResult),
@@ -33,18 +36,18 @@ class _ScanNFCPageState extends State<ScanNFCPage> {
                   },
                 ),
               ],
-            )),
-
-      );
-    });}
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   void submit() {
     setState(() {
       scannerResult = '';
     });
   }
-
-
 
   Widget _scanOrNFC(IconData icon, String label) {
     return Container(
@@ -56,8 +59,14 @@ class _ScanNFCPageState extends State<ScanNFCPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FaIcon(icon, color: Colors.black45, size: 50,),
-            SizedBox(height: 10,),
+            FaIcon(
+              icon,
+              color: Colors.black45,
+              size: 50,
+            ),
+            SizedBox(
+              height: 10,
+            ),
             Text(label, style: TextStyle(color: Colors.black45, fontSize: 18))
           ],
         ),
@@ -79,16 +88,14 @@ class _ScanNFCPageState extends State<ScanNFCPage> {
                 onPressed: () => scan(),
                 child: Column(
                   children: <Widget>[
-                    _scanOrNFC(FontAwesomeIcons.barcode,'SCAN QR')
+                    _scanOrNFC(FontAwesomeIcons.barcode, 'SCAN QR')
                   ],
                 ),
               ),
               FlatButton(
-                onPressed: (){},
+                onPressed: () {},
                 child: Column(
-                  children: <Widget>[
-                    _scanOrNFC(Icons.nfc,"NFC")
-                  ],
+                  children: <Widget>[_scanOrNFC(Icons.nfc, "NFC")],
                 ),
               )
             ],
