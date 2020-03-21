@@ -17,7 +17,6 @@ class _ScanNFCPageState extends State<ScanNFCPage> {
   String scannerResult;
 
   // TODO : GANTI JADI PAKE SCAN SERVICE AJA
-  // TODO : BIKIN POST SERVICE DAN BUAT MEKANISME ABSEN PAKE QR
   void scan() async {
     String result = await scanner.scan();
     setState(
@@ -49,6 +48,7 @@ class _ScanNFCPageState extends State<ScanNFCPage> {
     });
   }
 
+  // TODO : BIKIN POST SERVICE DAN BUAT MEKANISME ABSEN PAKE QR
   Widget _scanOrNFC(IconData icon, String label) {
     return Container(
       height: 120,
