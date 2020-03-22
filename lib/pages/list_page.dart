@@ -21,6 +21,7 @@ class ListPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                FieldSearchName(),
                 // ini widget buat tombol yang disebelah search bar
                 SearchBy(
                   icon: Icons.settings_overscan,
@@ -36,7 +37,6 @@ class ListPage extends StatelessWidget {
                     ListPageBloc().findById(result, 'nfc', context);
                   },
                 ),
-                FieldSearchName(),
               ],
             ),
             StreamBuilder(

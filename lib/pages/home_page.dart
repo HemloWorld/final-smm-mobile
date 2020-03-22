@@ -1,4 +1,5 @@
 import 'package:final_project/auth.dart';
+import 'package:final_project/widgets/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -11,6 +12,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _checkTask = false;
+  String textResult;
+  String txt =' ';
+
+  void result() {
+    setState(() {
+      txt = 'You`re finished. Congratulations! On completing tasks today!';
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +95,7 @@ class _HomePageState extends State<HomePage> {
           clipper: MyWavyClipper(),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 32, bottom: 20),
+          padding: EdgeInsets.only(left: 32, bottom: 10),
           child: Text(
             '${DateFormat('EEEE, d MMM yyyy').format(DateTime.now())}',
             style: TextStyle(
@@ -105,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                 overflow: Overflow.visible,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(right: 20, top: 20),
+                    padding: EdgeInsets.only(right: 20, top: 20, bottom: 20),
                     child: Container(
                       padding: EdgeInsets.all(20),
                       width: 200,
@@ -169,6 +179,22 @@ class _HomePageState extends State<HomePage> {
             },
             itemCount: 3,
             scrollDirection: Axis.horizontal,
+          ),
+        ),
+        Center(
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 12),
+              MainButton(
+                text: 'Submit',
+                onClickEvent: result,
+              ),
+              Text('$txt', style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black45,
+                  fontSize: 16
+              ),),
+            ],
           ),
         ),
       ],
