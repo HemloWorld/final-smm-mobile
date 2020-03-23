@@ -55,12 +55,16 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10, left: 32),
-                  child: SizedBox(
-                    width: 100,
-                    height: 100,
-                    child: Image(image: NetworkImage(imageURL,),),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 10, left: 32),
+                    child: SizedBox(
+                      width: 100,
+                      height: 100,
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage(imageURL)                     
+                      ),
+                    ),
                   ),
                 ),
                 Padding(
