@@ -1,3 +1,4 @@
+import 'package:final_project/widgets/login_widget/divider_text.dart';
 import 'package:final_project/widgets/login_widget/email_field.dart';
 import 'package:final_project/widgets/login_widget/login_button.dart';
 import 'package:final_project/widgets/login_widget/password_field.dart';
@@ -49,13 +50,7 @@ class _LoginPageState extends State<LoginPage> {
             PasswordField(),
             SizedBox(height: 10.0,),
             LoginButton(),
-            Text(
-              '- OR -',
-              style: TextStyle(
-                color: Colors.black54,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+            DividerText(),
             _signWithGoogle(),
           ],
         ),
