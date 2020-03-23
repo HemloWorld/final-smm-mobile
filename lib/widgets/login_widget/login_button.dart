@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../app_bar.dart';
-
-class LoginButton extends StatefulWidget {
-  @override
-  _LoginButtonState createState() => _LoginButtonState();
-}
-
-class _LoginButtonState extends State<LoginButton> {
+class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
