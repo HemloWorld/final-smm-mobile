@@ -13,23 +13,29 @@ class UserList extends StatelessWidget {
     return Expanded(
         child: ListView.builder(
       itemBuilder: (context, index) {
-        bool isPresent = datas[index]['attendances'][0]['date'] == TimeService().getDate();
+        var data;
+        data = datas[index];
+        bool isPresent =
+            data['attendances'][0]['date'] == TimeService().getDate();
         return Card(
           child: ListTile(
             leading: CircleAvatar(
-              backgroundImage: NetworkImage(datas[index]['photoUrl']), // no matter how big it is, it won't overflow
+              backgroundImage: NetworkImage(data[
+                  'photoUrl']), // no matter how big it is, it won't overflow
             ),
-            title: Text(datas[index]['name']),
-            subtitle: Text(datas[index]['department']['name']),
+            title: Text(data['name']),
+            subtitle: Text(data['department']['name']),
             trailing: FaIcon(
-              isPresent?FontAwesomeIcons.checkCircle : FontAwesomeIcons.circle,
-              color: isPresent?Colors.green : Colors.red,
+              isPresent
+                  ? FontAwesomeIcons.checkCircle
+                  : FontAwesomeIcons.circle,
+              color: isPresent ? Colors.green : Colors.red,
             ),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ReportPage(datas),
+                  builder: (context) => ReportPage(data),
                 ),
               );
             },

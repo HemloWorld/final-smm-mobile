@@ -12,11 +12,16 @@ class ValueProfileExpanded extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        Icon(icon, color: Colors.black45),
-        SizedBox(width: 10,),
+        Container(
+          padding: EdgeInsets.only(left: 25),
+          child: Icon(
+            icon,
+            color: Colors.black45,
+          ),
+        ),
         Container(
           padding: EdgeInsets.all(10),
-          width: 150,
+          width: 120,
           decoration: BoxDecoration(
               border: Border(bottom: BorderSide(width: 1.0, color: Color(0xFFEBEEF1)),)
           ),
