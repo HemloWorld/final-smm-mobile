@@ -1,4 +1,7 @@
 import 'package:final_project/pages/login_page.dart';
+import 'package:final_project/widgets/report_page_widget/title_profile.dart';
+import 'package:final_project/widgets/report_page_widget/value_profile.dart';
+import 'package:final_project/widgets/report_page_widget/value_profile_expanded.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -49,125 +52,28 @@ class ProfilePage extends StatelessWidget {
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
-                      _buildTitle('Name'),
+                      TitleProfile(title: 'Name',),
+                      ValueProfile(icon : Icons.person, label : 'Afina Putri D'),
+                      TitleProfile(title: 'Position',),
+                      ValueProfile(icon : Icons.person_pin_circle, label : 'Project Manager'),
+                      TitleProfile(title: 'Birth of Date',),
+                      ValueProfile(icon : Icons.cake, label : '03 December 2000'),
+                      TitleProfile(title: 'Phone Number',),
+                      ValueProfile(icon : Icons.phone, label : '085772610027'),
+                      TitleProfile(title: 'Email',),
+                      ValueProfile(icon : Icons.email, label : 'afnpd03@gmail.com'),
                       Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 2.0),
-                          child: new Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              new Flexible(
-                                child: new TextField(
-                                  decoration: const InputDecoration(
-                                    icon: Icon(Icons.person),
-                                    hintText: "Afina Putri D",
-                                    enabled: false,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )),
-                      _buildTitle('Position'),
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 2.0),
-                          child: new Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              new Flexible(
-                                child: new TextField(
-                                  decoration: const InputDecoration(
-                                    icon: Icon(Icons.person_pin_circle),
-                                    hintText: "Project Manager",
-                                    enabled: false,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )),
-                      _buildTitle('Birth of Date'),
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 2.0),
-                          child: new Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              new Flexible(
-                                child: new TextField(
-                                  decoration: const InputDecoration(
-                                    icon: Icon(Icons.cake),
-                                    hintText: "3 December 2000",
-                                    enabled: false,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )),
-                      _buildTitle('Phone Number'),
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 2.0),
-                          child: new Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              new Flexible(
-                                child: new TextField(
-                                  decoration: const InputDecoration(
-                                    icon: Icon(Icons.phone),
-                                    hintText: "085772610027",
-                                    enabled: false,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )),
-                      _buildTitle('Email'),
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 2.0),
-                          child: new Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              new Flexible(
-                                child: new TextField(
-                                  decoration: const InputDecoration(
-                                    icon: Icon(Icons.cake),
-                                    hintText: "afnpd03@gmail.com",
-                                    enabled: false,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )),
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 25.0),
+                          padding: EdgeInsets.only(right: 25.0, ),
                           child: new Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Expanded(
-                                child: Container(
-                                  child: new Text(
-                                    'Gender',
-                                    style: TextStyle(
-                                        color: Colors.black45,
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
+                                child: TitleProfile(title: 'Gender',),
                                 flex: 2,
                               ),
                               Expanded(
-                                child: Container(
-                                  child: new Text(
-                                    'Blood Type',
-                                    style: TextStyle(
-                                        color: Colors.black45,
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
+                                child: TitleProfile(title: 'Blood Type',),
                                 flex: 2,
                               ),
                             ],
@@ -180,42 +86,17 @@ class ProfilePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Flexible(
-                                child: Padding(
-                                  padding: EdgeInsets.only(right: 10.0),
-                                  child: new TextField(
-                                    decoration: const InputDecoration(
-                                        icon: FaIcon(FontAwesomeIcons.venusMars,),hintText: "Female", enabled: false),
-                                  ),
-                                ),
+                                child : ValueProfileExpanded(icon : FontAwesomeIcons.venusMars, label : 'Female'),
                                 flex: 2,
                               ),
                               Flexible(
-                                child: new TextField(
-                                  decoration: const InputDecoration(
-                                      icon: FaIcon(FontAwesomeIcons.tint, size: 20,),hintText: "O", enabled: false),
-                                ),
+                                child : ValueProfileExpanded(icon : FontAwesomeIcons.tint, label : 'O'),
                                 flex: 2,
                               ),
                             ],
                           )),
-                      _buildTitle('Company'),
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 2.0),
-                          child: new Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              new Flexible(
-                                child: new TextField(
-                                  decoration: const InputDecoration(
-                                    icon: FaIcon(FontAwesomeIcons.building),
-                                    hintText: "Berau Coal, PT",
-                                    enabled: false,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )),
+                      TitleProfile(title: 'Company',),
+                      ValueProfile(icon: FontAwesomeIcons.building, label: 'Berau Coal, PT',),
                       SizedBox(height: 10,),
                       FlatButton(
                         onPressed: () {
