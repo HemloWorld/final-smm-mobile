@@ -30,12 +30,7 @@ class _ReportPageState extends State<ReportPage> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ListPage(),
-                  ),
-                );
+                Navigator.of(context).pop();
               },
             ),
           ),

@@ -1,7 +1,12 @@
 import 'package:final_project/blocs/listpagebloc/lp_bloc.dart';
+import 'package:final_project/blocs/listpagebloc/lp_event.dart';
+import 'package:final_project/blocs/listpagebloc/lp_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FieldSearchName extends StatelessWidget {
+  final bloc;
+  FieldSearchName(this.bloc);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,7 +33,7 @@ class FieldSearchName extends StatelessWidget {
               fontFamily: 'OpenSans',
             ),
             onSubmitted: (input) {
-              ListPageBloc().findByName(input);
+              bloc.add(SearchByName(input));
             },
             decoration: InputDecoration(
               border: InputBorder.none,
