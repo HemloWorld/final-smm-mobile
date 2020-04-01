@@ -72,16 +72,16 @@ class ProfileData extends StatelessWidget {
               ),
             ],
           ),
-          TitleProfile(
-            title: 'Company',
-          ),
-          ValueProfile(
-            icon: FontAwesomeIcons.building,
-            label: 'Berau Coal, PT',
-          ),
-          SizedBox(
-            height: 30,
-          )
+          // // TitleProfile(
+          // //   title: 'Company',
+          // // ),
+          // // ValueProfile(
+          // //   icon: FontAwesomeIcons.building,
+          // //   label: 'Berau Coal, PT',
+          // // ),
+          // SizedBox(
+          //   height: 30,
+          // )
         ],
       ),
     ));

@@ -1,11 +1,11 @@
-import 'package:final_project/blocs/listpagebloc/lp_event.dart';
-import 'package:final_project/blocs/listpagebloc/lp_state.dart';
+import 'package:final_project/blocs/bloc_event.dart';
+import 'package:final_project/blocs/bloc_state.dart';
+import 'package:final_project/blocs/list_page_bloc.dart';
 import 'package:final_project/services/scan_service.dart';
 import 'package:final_project/widgets/list_page_widgets/field_search_name.dart';
 import 'package:final_project/widgets/list_page_widgets/search_by.dart';
 import 'package:final_project/widgets/user_list.dart';
 import 'package:flutter/material.dart';
-import 'package:final_project/blocs/listpagebloc/lp_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ListPage extends StatelessWidget {
@@ -22,37 +22,31 @@ class ListPage extends StatelessWidget {
               SizedBox(
                 height: 40,
               ),
-              BlocBuilder<ListPageBloc, ListPageState>(
-                builder: (context, snapshot) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      FieldSearchName(context.bloc<ListPageBloc>()),
-                      // ini widget buat tombol yang disebelah search bar
-                      SearchBy(
-                        icon: Icons.settings_overscan,
-                        onPressed: () async {
-                          String result = await ScanService().qr();
-                          context.bloc<ListPageBloc>().add(SearchByQrId(result));
-                        },
-                      ),
-                      SearchBy(
-                        icon: Icons.nfc,
-                        onPressed: () async {
-                          String result = await ScanService().nfc();
-                          context.bloc<ListPageBloc>().add(SearchByNfcId(result));
-                        },
-                      ),
-                    ],
-                  );
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  FieldSearchName(),
+                  SearchBy(
+                    icon: Icons.settings_overscan,
+                    onPressed: () async {
+                      String result = await ScanService().qr();
+                      BlocProvider.of<ListPageBloc>(context)
+                          .add(SearchUserById(result, 'qr'));
+                    },
+                  ),
+                  SearchBy(
+                    icon: Icons.nfc,
+                    onPressed: () async {
+                      String result = await ScanService().nfc();
+                      BlocProvider.of<ListPageBloc>(context)
+                          .add(SearchUserById(result, 'nfc'));
+                    },
+                  ),
+                ],
               ),
-              BlocConsumer<ListPageBloc, ListPageState>(
-                listener: (context, snapshot) {
-                  return;
-                },
-                builder: (context, snapshot) {
-                  if (snapshot is Loading) {
+              BlocBuilder<ListPageBloc, BlocState>(
+                builder: (context, state) {
+                  if (state is Loading) {
                     return Column(
                       children: <Widget>[
                         SizedBox(
@@ -61,8 +55,8 @@ class ListPage extends StatelessWidget {
                         CircularProgressIndicator(),
                       ],
                     );
-                  } else if (snapshot is Success) {
-                    return UserList((snapshot as Success).result);
+                  } else if (state is Success) {
+                    return UserList(state.result);
                   }
                   return Container();
                 },

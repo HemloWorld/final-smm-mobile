@@ -1,28 +1,31 @@
+import 'package:final_project/blocs/bloc_event.dart';
+import 'package:final_project/blocs/bloc_state.dart';
+import 'package:final_project/blocs/profile_bloc.dart';
 import 'package:final_project/pages/login_page.dart';
 import 'package:final_project/widgets/report_page_widget/title_profile.dart';
 import 'package:final_project/widgets/report_page_widget/value_profile.dart';
 import 'package:final_project/widgets/report_page_widget/value_profile_expanded.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import '../auth.dart';
 
 class ProfilePage extends StatelessWidget {
   static String tag = 'profile-page';
-  Widget _buildTitle(String title,) {
+  Widget _buildTitle(String title) {
     return Column(
       children: <Widget>[
         Padding(
-            padding: EdgeInsets.only(
-                left: 25.0, right: 25.0, top: 25.0),
-            child: new Row(
+            padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
+            child: Row(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                new Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    new Text(
+                    Text(
                       title,
                       style: TextStyle(
                           color: Colors.black45,
@@ -39,10 +42,13 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Material(
-          child: CustomScrollView(
-           slivers: [
+    return BlocProvider<ProfileBloc>(
+      create: (_) => ProfileBloc(),
+      child: BlocBuilder<ProfileBloc, BlocState>(
+        builder: (context, state) {
+          return SafeArea(
+            child: Material(
+              child: CustomScrollView(slivers: [
                 SliverPersistentHeader(
                   delegate: MySliverAppBar(
                     expandedHeight: 280,
@@ -52,28 +58,47 @@ class ProfilePage extends StatelessWidget {
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
-                      TitleProfile(title: 'Name',),
-                      ValueProfile(icon : Icons.person, label : 'Afina Putri D'),
-                      TitleProfile(title: 'Position',),
-                      ValueProfile(icon : Icons.person_pin_circle, label : 'Project Manager'),
-                      TitleProfile(title: 'Birth of Date',),
-                      ValueProfile(icon : Icons.cake, label : '03 December 2000'),
-                      TitleProfile(title: 'Phone Number',),
-                      ValueProfile(icon : Icons.phone, label : '085772610027'),
-                      TitleProfile(title: 'Email',),
-                      ValueProfile(icon : Icons.email, label : 'afnpd03@gmail.com'),
+                      TitleProfile(
+                        title: 'Name',
+                      ),
+                      ValueProfile(icon: Icons.person, label: 'Afina Putri D'),
+                      TitleProfile(
+                        title: 'Position',
+                      ),
+                      ValueProfile(
+                          icon: Icons.person_pin_circle,
+                          label: 'Project Manager'),
+                      TitleProfile(
+                        title: 'Birth of Date',
+                      ),
+                      ValueProfile(icon: Icons.cake, label: '03 December 2000'),
+                      TitleProfile(
+                        title: 'Phone Number',
+                      ),
+                      ValueProfile(icon: Icons.phone, label: '085772610027'),
+                      TitleProfile(
+                        title: 'Email',
+                      ),
+                      ValueProfile(
+                          icon: Icons.email, label: 'afnpd03@gmail.com'),
                       Padding(
-                          padding: EdgeInsets.only(right: 25.0, ),
+                          padding: EdgeInsets.only(
+                            right: 25.0,
+                          ),
                           child: new Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Expanded(
-                                child: TitleProfile(title: 'Gender',),
+                                child: TitleProfile(
+                                  title: 'Gender',
+                                ),
                                 flex: 2,
                               ),
                               Expanded(
-                                child: TitleProfile(title: 'Blood Type',),
+                                child: TitleProfile(
+                                  title: 'Blood Type',
+                                ),
                                 flex: 2,
                               ),
                             ],
@@ -86,18 +111,28 @@ class ProfilePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
                               Flexible(
-                                child : ValueProfileExpanded(icon : FontAwesomeIcons.venusMars, label : 'Female'),
+                                child: ValueProfileExpanded(
+                                    icon: FontAwesomeIcons.venusMars,
+                                    label: 'Female'),
                                 flex: 2,
                               ),
                               Flexible(
-                                child : ValueProfileExpanded(icon : FontAwesomeIcons.tint, label : 'O'),
+                                child: ValueProfileExpanded(
+                                    icon: FontAwesomeIcons.tint, label: 'O'),
                                 flex: 2,
                               ),
                             ],
                           )),
-                      TitleProfile(title: 'Company',),
-                      ValueProfile(icon: FontAwesomeIcons.building, label: 'Berau Coal, PT',),
-                      SizedBox(height: 10,),
+                      TitleProfile(
+                        title: 'Company',
+                      ),
+                      ValueProfile(
+                        icon: FontAwesomeIcons.building,
+                        label: 'Berau Coal, PT',
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
                       FlatButton(
                         onPressed: () {
                           signOutGoogle();
@@ -108,17 +143,25 @@ class ProfilePage extends StatelessWidget {
                             withNavBar: false,
                           );
                         },
-                        child: Text('Sign Out',
-                          style: TextStyle(color: Color.fromRGBO(208,52,47,1), fontSize: 15),
+                        child: Text(
+                          'Sign Out',
+                          style: TextStyle(
+                              color: Color.fromRGBO(208, 52, 47, 1),
+                              fontSize: 15),
                         ),
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 10,
+                      ),
                     ],
                   ),
                 )
-              ]
-          ),
-        ));
+              ]),
+            ),
+          );
+        },
+      ),
+    );
   }
 }
 
@@ -169,7 +212,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                                 image: NetworkImage(imageURL),
                                 fit: BoxFit.cover),
                             borderRadius:
-                            BorderRadius.all(Radius.circular(75.0)),
+                                BorderRadius.all(Radius.circular(75.0)),
                             boxShadow: [
                               BoxShadow(blurRadius: 5.0, color: Colors.grey)
                             ])),
@@ -206,4 +249,3 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) => true;
 }
-

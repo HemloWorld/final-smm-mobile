@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:final_project/constant/constants.dart';
 
-class DioService {
+class UserService {
   getHttp() async {
     try {
       Response response = await Dio().get(API + "/p/");
@@ -13,14 +13,23 @@ class DioService {
 
   fetchById(id, type) async {
     try {
-      Response response = await Dio().get(API + "/p" + "/$id" + "/$type");
+      Response response = await Dio().get("$API/u/$id/$type");
       return response.data;
     } catch (e) {
-      // ini ngecheck errornya 404 atau bukan, kalo iya kirim sinyal ke yang manggil
       if(e.response.statusCode == 404) {
         return 404;
       }
       print(e);
     } 
+  }
+
+  fetchPresenceByUserId(userId, page) async {
+    try {
+      Response response = await Dio().get("$API/a/attendance/id?id=$userId&page=$page");
+
+      return response.data;
+    } catch (e) {
+      print(e);
+    }
   }
 }
