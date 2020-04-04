@@ -80,7 +80,11 @@ class ScanNFCPage extends StatelessWidget {
                         );
                       }
                       if(state is Success){
+                        print(state.result);
                         return CustomDialog(state.result);
+                      }
+                      if(state is Error){
+
                       }
                       return Center(
                         child: CircularProgressIndicator(),

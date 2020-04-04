@@ -1,6 +1,11 @@
+import 'package:final_project/blocs/bloc_event.dart';
+import 'package:final_project/blocs/bloc_state.dart';
+import 'package:final_project/blocs/scan_nfc_page_bloc.dart';
 import 'package:final_project/pages/scan_nfc_page.dart';
+import 'package:final_project/services/time_service.dart';
 import 'package:final_project/widgets/scan_nfc_page_widget/value_profile.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomDialog extends StatelessWidget {
@@ -50,7 +55,8 @@ class CustomDialog extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: FlatButton(
                   onPressed: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => ScanNFCPage()));
+                    { BlocProvider.of<ScanNfcPageBloc>(context).add(SubmitAttendance(data['id'], TimeService().getDate(), TimeService().getTime()));}
+//                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => ScanNFCPage()));
                   },
                   child: Text('Submit'),
                 ),
@@ -80,7 +86,26 @@ class CustomDialog extends StatelessWidget {
       ),
       elevation: 0.0,
       backgroundColor: Colors.transparent,
-      child: dialogContent(context),
+      child: BlocProvider<ScanNfcPageBloc>(
+        create: (_) => ScanNfcPageBloc(),
+        child: Center(
+          child: BlocBuilder<ScanNfcPageBloc,BlocState>(
+            builder: (context, state){
+              if(state is Waiting){
+                return dialogContent(context);
+              }
+              if(state is Success){
+                run() async {
+                  await Future.delayed(const Duration(seconds: 1));
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => ScanNFCPage()));
+                }
+                run();
+              }
+              return CircularProgressIndicator();
+            }
+          ),
+        )
+      ),
     );
   }
 }

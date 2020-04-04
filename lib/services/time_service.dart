@@ -11,6 +11,10 @@ class TimeService {
     return DateFormat("yyyy-MM-dd").format(DateTime.now());
   }
 
+  getTime(){
+    return DateFormat("HH:mm:ss").format(DateTime.now());
+  }
+
   beautifyDate(date) {
     return DateFormat("yMMMMd").format(DateTime.parse(date));
   }

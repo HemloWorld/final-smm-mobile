@@ -3,7 +3,7 @@ import 'package:final_project/constant/constants.dart';
 
 class UserService {
 //  var dio = Dio();
-  var id;
+  var Id;
 
 //  login(email) async {
 //    try {
@@ -35,8 +35,7 @@ class UserService {
   fetchById(id, type) async {
     try {
       Response response = await Dio().get("$API/u/$id/$type");
-      id = response.data;
-      return id;
+      return response.data;
     } catch (e) {
       if(e.response.statusCode == 404) {
         return 404;
@@ -48,16 +47,18 @@ class UserService {
   fetchPresenceByUserId(userId, page) async {
     try {
       Response response = await Dio().get("$API/a/attendance/id?id=$userId&page=$page");
-
       return response.data;
     } catch (e) {
       print(e);
     }
   }
 
-  postAttendance(userId, dateTime) async {
+  postAttendance(userId, date, time) async {
     try {
-      Response response = await Dio().post("$API/a/$id/submit");
+      print(userId);
+      print(date);
+      print(time);
+      Response response = await Dio().post("$API/a/$userId/submit", data: {"date": date, "time": time});
       return response.data;
     } catch (e) {
       print(e);

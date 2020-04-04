@@ -13,7 +13,17 @@ class ScanNfcPageBloc extends Bloc<BlocEvent, BlocState> {
       yield Loading();
       try {
         final result = await UserService().fetchById(event.id, event.type);
-        print('apaaja');
+        yield Success(result);
+      } catch (e) {
+        yield Error(e);
+      }
+    } else if (event is SubmitAttendance) {
+      yield Loading();
+      try {
+        print(event.userId);
+        print(event.date);
+        print(event.time);
+        final result = await UserService().postAttendance(event.userId, event.date, event.time);
         yield Success(result);
       } catch (e) {
         yield Error(e);

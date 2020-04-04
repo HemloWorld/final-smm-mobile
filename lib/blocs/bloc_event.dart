@@ -14,6 +14,14 @@ class SearchPresenceByUserId extends BlocEvent {
   SearchPresenceByUserId(this.userId, this.page);
 }
 
+class SubmitAttendance extends BlocEvent{
+  final String userId;
+  final String date;
+  final String time;
+
+  SubmitAttendance(this.userId,this.date,this.time);
+}
+
 class Login extends BlocEvent {
   final String email;
 
