@@ -1,4 +1,3 @@
-import 'package:final_project/blocs/bloc_event.dart';
 import 'package:final_project/blocs/bloc_state.dart';
 import 'package:final_project/blocs/profile_bloc.dart';
 import 'package:final_project/pages/login_page.dart';
@@ -13,32 +12,6 @@ import '../auth.dart';
 
 class ProfilePage extends StatelessWidget {
   static String tag = 'profile-page';
-  Widget _buildTitle(String title) {
-    return Column(
-      children: <Widget>[
-        Padding(
-            padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Text(
-                      title,
-                      style: TextStyle(
-                          color: Colors.black45,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ],
-            )),
-      ],
-    );
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,4 @@
 import 'package:final_project/auth.dart';
-import 'package:final_project/widgets/main_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -185,22 +184,22 @@ class _HomePageState extends State<HomePage> {
             scrollDirection: Axis.horizontal,
           ),
         ),
-        Center(
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 12),
-              MainButton(
-                text: 'Submit',
-                onClickEvent: result,
-              ),
-              Text('$txt', style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black45,
-                  fontSize: 16
-              ),),
-            ],
-          ),
-        ),
+//        Center(
+//          child: Column(
+//            children: <Widget>[
+//              SizedBox(height: 12),
+//              MainButton(
+//                text: 'Submit',
+//                onClickEvent: result,
+//              ),
+//              Text('$txt', style: TextStyle(
+//                  fontWeight: FontWeight.bold,
+//                  color: Colors.black45,
+//                  fontSize: 16
+//              ),),
+//            ],
+//          ),
+//        ),
       ],
     );
   }

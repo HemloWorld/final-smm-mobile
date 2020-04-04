@@ -64,7 +64,7 @@ class ProfileData extends StatelessWidget {
                       title: 'Blood Type',
                     ),
                     ValueProfileExpanded(
-                      icon: FontAwesomeIcons.venusMars,
+                      icon: FontAwesomeIcons.tint,
                       label: user['bloodType']['type'],
                     ),
                   ],

@@ -1,54 +1,15 @@
+import 'package:final_project/blocs/bloc_event.dart';
+import 'package:final_project/blocs/bloc_state.dart';
+import 'package:final_project/blocs/scan_nfc_page_bloc.dart';
+import 'package:final_project/services/scan_service.dart';
+import 'package:final_project/widgets/scan_nfc_page_widget/custom_dialog.dart';
 import 'package:flutter/material.dart';
-//pub dev
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:qrscan/qrscan.dart' as scanner;
-//utils
-import 'package:final_project/utils/pop_dialog.dart';
-//widget
-import 'package:final_project/widgets/main_button.dart';
 
-class ScanNFCPage extends StatefulWidget {
-  static String tag = 'scan-nfc-tag';
-  @override
-  _ScanNFCPageState createState() => _ScanNFCPageState();
-}
+class ScanNFCPage extends StatelessWidget {
+  static String tag = 'scan-nfc-page';
 
-class _ScanNFCPageState extends State<ScanNFCPage> {
-  String scannerResult;
-
-  // TODO : GANTI JADI PAKE SCAN SERVICE AJA
-  void scan() async {
-    String result = await scanner.scan();
-    setState(
-      () {
-        scannerResult = result;
-        PopDialog.showBottomDialog(
-          context,
-          Center(
-            child: Column(
-              children: <Widget>[
-                Text(scannerResult),
-                MainButton(
-                  text: 'Submit',
-                  onClickEvent: () {
-                    submit();
-                  },
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  void submit() {
-    setState(() {
-      scannerResult = '';
-    });
-  }
-
-  // TODO : BIKIN POST SERVICE DAN BUAT MEKANISME ABSEN PAKE QR
   Widget _scanOrNFC(IconData icon, String label) {
     return Container(
       height: 120,
@@ -76,32 +37,61 @@ class _ScanNFCPageState extends State<ScanNFCPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              FlatButton(
-                onPressed: () => scan(),
-                child: Column(
-                  children: <Widget>[
-                    _scanOrNFC(FontAwesomeIcons.barcode, 'SCAN QR')
-                  ],
-                ),
-              ),
-              FlatButton(
-                onPressed: () {},
-                child: Column(
-                  children: <Widget>[_scanOrNFC(Icons.nfc, "NFC")],
-                ),
-              )
-            ],
-          ),
-        ],
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Container(
+          child: BlocProvider<ScanNfcPageBloc>(
+            create: (_) => ScanNfcPageBloc(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                BlocBuilder<ScanNfcPageBloc, BlocState>(
+                    builder: (context, state){
+                      if(state is Waiting){
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            FlatButton(
+                              onPressed: () async {
+                                String result = await ScanService().qr();
+                                BlocProvider.of<ScanNfcPageBloc>(context)
+                                    .add(SearchUserById(result, 'qr'));
+                                print(result);
+                              },
+                              child: Column(
+                                children: <Widget>[
+                                  _scanOrNFC(FontAwesomeIcons.barcode, 'SCAN QR')
+                                ],
+                              ),
+                            ),
+                            FlatButton(
+                              onPressed: () async {
+                                String result = await ScanService().qr();
+                                BlocProvider.of<ScanNfcPageBloc>(context)
+                                    .add(SearchUserById(result, 'qr'));
+                                print(result);
+                              },
+                              child: Column(
+                                children: <Widget>[_scanOrNFC(Icons.nfc, "NFC")],
+                              ),
+                            )
+                          ],
+                        );
+                      }
+                      if(state is Success){
+                        return CustomDialog(state.result);
+                      }
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                )
+              ],
+            ),
+          )
       ),
     );
   }
 }
+

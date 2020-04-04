@@ -5,7 +5,7 @@ class Waiting extends BlocState{}
 class Loading extends BlocState {}
 
 class Success extends BlocState {
-  final List result;
+  final result;
 
   Success(this.result);
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -8,7 +9,7 @@ class LoginButton extends StatelessWidget {
       child: RaisedButton(
         elevation: 1,
         onPressed: () {
-          // Navigator.of(context).pushReplacementNamed(Bar.tag);
+//          BlocProvider.of<LoginPageBloc>(context).add(Login(email : emailController.text));
           final snackbar = SnackBar(
             content: Text('Login Success', textAlign: TextAlign.center),
           );

@@ -13,3 +13,9 @@ class SearchPresenceByUserId extends BlocEvent {
 
   SearchPresenceByUserId(this.userId, this.page);
 }
+
+class Login extends BlocEvent {
+  final String email;
+
+  Login(this.email);
+}
