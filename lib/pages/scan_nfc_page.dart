@@ -2,6 +2,7 @@ import 'package:final_project/blocs/bloc_event.dart';
 import 'package:final_project/blocs/bloc_state.dart';
 import 'package:final_project/blocs/scan_nfc_page_bloc.dart';
 import 'package:final_project/services/scan_service.dart';
+import 'package:final_project/widgets/scan_nfc_page_widget/alert_dialog.dart';
 import 'package:final_project/widgets/scan_nfc_page_widget/custom_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,6 +49,9 @@ class ScanNFCPage extends StatelessWidget {
               children: <Widget>[
                 BlocBuilder<ScanNfcPageBloc, BlocState>(
                     builder: (context, state){
+                      if(state is Error){
+                        return ErrorDialog();
+                      }
                       if(state is Waiting){
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -61,7 +65,7 @@ class ScanNFCPage extends StatelessWidget {
                               },
                               child: Column(
                                 children: <Widget>[
-                                  _scanOrNFC(FontAwesomeIcons.barcode, 'SCAN QR')
+                                  _scanOrNFC(FontAwesomeIcons.qrcode, 'SCAN QR')
                                 ],
                               ),
                             ),
@@ -80,11 +84,8 @@ class ScanNFCPage extends StatelessWidget {
                         );
                       }
                       if(state is Success){
-                        print(state.result);
+//                        print(state.result);
                         return CustomDialog(state.result);
-                      }
-                      if(state is Error){
-
                       }
                       return Center(
                         child: CircularProgressIndicator(),

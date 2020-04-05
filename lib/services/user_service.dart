@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:final_project/blocs/bloc_state.dart';
 import 'package:final_project/constant/constants.dart';
 
 class UserService {
 //  var dio = Dio();
-  var Id;
 
 //  login(email) async {
 //    try {
@@ -55,12 +55,12 @@ class UserService {
 
   postAttendance(userId, date, time) async {
     try {
-      print(userId);
-      print(date);
-      print(time);
       Response response = await Dio().post("$API/a/$userId/submit", data: {"date": date, "time": time});
       return response.data;
     } catch (e) {
+      if(e.response.statusCode == 404) {
+        return 404;
+      }
       print(e);
     }
   }

@@ -56,7 +56,6 @@ class CustomDialog extends StatelessWidget {
                 child: FlatButton(
                   onPressed: () {
                     { BlocProvider.of<ScanNfcPageBloc>(context).add(SubmitAttendance(data['id'], TimeService().getDate(), TimeService().getTime()));}
-//                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => ScanNFCPage()));
                   },
                   child: Text('Submit'),
                 ),
@@ -73,6 +72,15 @@ class CustomDialog extends StatelessWidget {
               ),
             )
 
+        ),
+        Positioned(
+          top: Consts.avatarRadius,
+          child: FlatButton(
+            onPressed: () {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => ScanNFCPage()));
+            },
+            child: Icon(Icons.close),
+          ),
         ),
       ],
     );

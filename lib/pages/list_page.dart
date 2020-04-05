@@ -4,9 +4,11 @@ import 'package:final_project/blocs/list_page_bloc.dart';
 import 'package:final_project/services/scan_service.dart';
 import 'package:final_project/widgets/list_page_widgets/field_search_name.dart';
 import 'package:final_project/widgets/list_page_widgets/search_by.dart';
+import 'package:final_project/widgets/media_query.dart';
 import 'package:final_project/widgets/user_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ListPage extends StatelessWidget {
   static String tag = 'list-page';
@@ -20,14 +22,14 @@ class ListPage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               SizedBox(
-                height: 40,
+                height: displayHeight(context) * 6,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   FieldSearchName(),
                   SearchBy(
-                    icon: Icons.settings_overscan,
+                    icon: FontAwesomeIcons.qrcode,
                     onPressed: () async {
                       String result = await ScanService().qr();
                       BlocProvider.of<ListPageBloc>(context)
@@ -40,6 +42,11 @@ class ListPage extends StatelessWidget {
                       String result = await ScanService().nfc();
                       BlocProvider.of<ListPageBloc>(context)
                           .add(SearchUserById(result, 'nfc'));
+                    },
+                  ),
+                  SearchBy(
+                    icon: FontAwesomeIcons.calendarAlt,
+                    onPressed: () { ;
                     },
                   ),
                 ],

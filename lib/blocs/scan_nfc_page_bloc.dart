@@ -13,20 +13,31 @@ class ScanNfcPageBloc extends Bloc<BlocEvent, BlocState> {
       yield Loading();
       try {
         final result = await UserService().fetchById(event.id, event.type);
-        yield Success(result);
+        print(result==404);
+        print(result=="404");
+        print(result);
+        if (result == 404) {
+          print('errorrr');
+          yield Error(result);
+        }else {
+          yield Success(result);
+        }
       } catch (e) {
         yield Error(e);
       }
-    } else if (event is SubmitAttendance) {
+    }
+    else if (event is SubmitAttendance) {
       yield Loading();
       try {
-        print(event.userId);
-        print(event.date);
-        print(event.time);
         final result = await UserService().postAttendance(event.userId, event.date, event.time);
         yield Success(result);
       } catch (e) {
-        yield Error(e);
+        if (e.response.statusCode == 404){
+          yield Error(e);
+        }else{
+          print(e.message);
+          print(e.request);
+        }
       }
     }
   }
