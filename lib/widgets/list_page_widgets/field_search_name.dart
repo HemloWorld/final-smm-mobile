@@ -1,5 +1,6 @@
 import 'package:final_project/blocs/bloc_event.dart';
 import 'package:final_project/blocs/list_page_bloc.dart';
+import 'package:final_project/widgets/media_query.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,18 +13,12 @@ class FieldSearchName extends StatelessWidget {
         Container(
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
-            color: Colors.white54,
+//            color: Colors.white54,
             borderRadius: BorderRadius.circular(10.0),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 6.0,
-                offset: Offset(0, 2),
-              ),
-            ],
+            color: Color(0xFFEBEEF1),
           ),
           height: 40.0,
-          width: 240,
+          width: displayWidth(context)*65,
           child: TextField(
             style: TextStyle(
               color: Colors.black45,

@@ -1,6 +1,6 @@
 import 'package:final_project/blocs/profile_bloc.dart';
-import 'package:final_project/widgets/presence_data.dart';
-import 'package:final_project/widgets/profile_data.dart';
+import 'package:final_project/widgets/report_page_widget/presence_data.dart';
+import 'package:final_project/widgets/report_page_widget/profile_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
