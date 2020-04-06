@@ -1,6 +1,7 @@
 import 'package:final_project/blocs/bloc_state.dart';
 import 'package:final_project/blocs/profile_bloc.dart';
 import 'package:final_project/pages/login_page.dart';
+import 'package:final_project/widgets/media_query.dart';
 import 'package:final_project/widgets/report_page_widget/title_profile.dart';
 import 'package:final_project/widgets/report_page_widget/value_profile.dart';
 import 'package:final_project/widgets/report_page_widget/value_profile_expanded.dart';
@@ -78,7 +79,7 @@ class ProfilePage extends StatelessWidget {
                           )),
                       Padding(
                           padding: EdgeInsets.only(
-                              left: 25.0, right: 25.0, top: 2.0),
+                              left: 15.0, right: 25.0, top: 2.0),
                           child: new Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -124,7 +125,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: displayHeight(context)*5,
                       ),
                     ],
                   ),
@@ -151,7 +152,8 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
       overflow: Overflow.visible,
       children: [
         Container(
-          color: Color.fromRGBO(208, 52, 47, 1),
+          child: Image.asset('assets/example.png', fit: BoxFit.fitWidth, alignment: Alignment.bottomCenter ),
+          color: Colors.black45,
         ),
         Center(
           child: Opacity(

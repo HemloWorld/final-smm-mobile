@@ -1,6 +1,8 @@
 import 'package:final_project/blocs/profile_bloc.dart';
+import 'package:final_project/widgets/media_query.dart';
 import 'package:final_project/widgets/report_page_widget/presence_data.dart';
 import 'package:final_project/widgets/report_page_widget/profile_data.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,10 +21,14 @@ class _ReportPageState extends State<ReportPage> {
     return BlocProvider<ProfileBloc>(
       create: (_) => ProfileBloc(),
       child: Scaffold(
-        backgroundColor: Color.fromRGBO(208, 52, 47, 1),
         body: Stack(
           alignment: Alignment.topCenter,
           children: <Widget>[
+            Container(
+              height: displayHeight(context)*20,
+              color: Colors.black45,
+              child: Image.asset('assets/example.png', fit: BoxFit.fitWidth,),
+            ),
             Positioned(
               top: 30,
               left: 10,
@@ -45,9 +51,6 @@ class _ReportPageState extends State<ReportPage> {
                   length: 2,
                   child: Column(
                     children: <Widget>[
-                      SizedBox(
-                        height: 30,
-                      ),
                       TabBar(
                         labelColor: Color.fromRGBO(208, 52, 47, 1),
                         unselectedLabelColor: Colors.black45,
@@ -78,12 +81,12 @@ class _ReportPageState extends State<ReportPage> {
               ),
             ),
             Positioned(
-              top: 40,
+              top: displayHeight(context)*10,
               child: Container(
-                width: 150,
-                height: 150,
+                width: 100,
+                height: 100,
                 decoration:
-                    ShapeDecoration(shape: CircleBorder(), color: Colors.white),
+                ShapeDecoration(shape: CircleBorder(), color: Colors.white),
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: DecoratedBox(
@@ -102,7 +105,7 @@ class _ReportPageState extends State<ReportPage> {
             ),
           ],
         ),
-      ),
+      )
     );
   }
 }

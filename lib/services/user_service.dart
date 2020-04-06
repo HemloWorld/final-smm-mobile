@@ -53,6 +53,15 @@ class UserService {
     }
   }
 
+  fetchPresenceByDate(date) async {
+    try {
+      Response response = await Dio().get("$API/a/attendance/date?date=$date");
+      return response.data;
+    } catch (e) {
+      print(e);
+    }
+  }
+
   postAttendance(userId, date, time) async {
     try {
       Response response = await Dio().post("$API/a/$userId/submit", data: {"date": date, "time": time});
